@@ -1,9 +1,9 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { GraphQLClient, gql } from 'graphql'
+import { GraphQLClient, gql } from 'graphql-request'
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 
-export default function handler(req, res) {
+export default async function comments(req, res) {
   const graphQLClient = new GraphQLClient(graphqlAPI, {
       header: {
           authorization: `Bearer ${process.env.GRAPHCMS_TOKEN}`
@@ -23,5 +23,5 @@ export default function handler(req, res) {
     slug: req.body.slug,
   });
 
-  return res.status(200).send(result);)
+  return res.status(200).send(result);
 }
